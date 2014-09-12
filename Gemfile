@@ -26,10 +26,15 @@ group :development, :test do
 end
 group :production do
   gem 'unicorn'
+  gem 'pg'
 end
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'fabrication'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'pry-rails'
+  gem 'shoulda'
 end
