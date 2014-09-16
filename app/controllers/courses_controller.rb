@@ -22,6 +22,20 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    if @course.update(course_params)
+      redirect_to course_path(@course), notice: "Course #{@course.name} has been updated."
+    else
+      flash.now[:alert] = "Your changes could not be saved."
+      render :edit
+    end
+  end
+
   protected
 
   def course_params
