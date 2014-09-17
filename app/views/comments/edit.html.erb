@@ -1,0 +1,5 @@
+<%= simple_form_for @comment, html: { id: "comment_form" }, url: "/courses/#{@comment.course_id}/comments/#{@comment.id}" do |f| %>
+  <%= f.hidden_field :course, value: "@course" %>
+  <%= f.input :comment_text, label: "Comment" %>
+  <%= f.submit "Save Edit" %>
+<% end %>

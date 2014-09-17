@@ -25,5 +25,6 @@ feature "User posts a comment" do
     fill_in "Comment", with: ""
     click_button "Submit"
     page.should have_content "Comment could not be posted."
+    page.should have_error("can't be blank", on: "Comment")
   end
 end
