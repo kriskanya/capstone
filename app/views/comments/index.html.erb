@@ -1,0 +1,11 @@
+<%= simple_form_for @comment, html: { id: "comment_form" }, url: course_comments_path(@course) do |f| %>
+  <%= f.hidden_field :course, value: "@course" %>
+  <%= f.input :comment_text %>
+  <%= f.submit "Submit Comment" %>
+<% end %>
+
+<div id="comment-listing">
+  <% @comments.each do |c| %>
+    <%= c.comment_text %>
+  <% end %>
+</div>
