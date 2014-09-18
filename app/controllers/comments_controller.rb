@@ -45,6 +45,7 @@ class CommentsController < ApplicationController
   def course_lookup
     @course = Course.find(params[:course_id])
   end
+
   # def index
   #   have a link where you're passing a course ID, find that course, once you have the course
   #   @course = Course.find(:params)

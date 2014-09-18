@@ -10,6 +10,8 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    # @comment = @course.comments.build(comment_params)  # creates comment and associates it with the course automatically
+    # @course = @course.build(course_params)
     if @course.save
       redirect_to course_path(@course), notice: "#{@course.name} has been posted"
     else
