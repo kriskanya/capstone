@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  acts_as_votable
 
   validates_presence_of :name, :url, :description, :level, :date, :instructor, :institution
 
