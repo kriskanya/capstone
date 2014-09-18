@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  # do a course lookup based on the id
+  before_action :ensure_user_owns_course, only: [:edit]
 
   def index
     @courses = Course.all
@@ -43,4 +45,12 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course).permit(:name, :url, :description, :level, :date, :cost, :instructor, :institution, :duration)
   end
+
+  def ensure_user_owns_course
+    @course = Course.find(params[:id])
+    unless @course.user == current_user
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
+  end
+
 end

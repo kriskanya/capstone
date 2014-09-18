@@ -1,1 +1,21 @@
+div#courses {
+  div.votable {
+    width: 4%;
+    display: inline-block;
+    text-align: right;
 
+    i.glyphicon-arrow-up, i.glyphicon-arrow-down {
+      margin: 0 5px 5px 0;
+      display: block;
+
+      &.down-arrow {
+        left: 1px;
+      }
+    }
+  }
+
+  div.content {
+    width: 93%;
+    display: inline-block;
+  }
+}
