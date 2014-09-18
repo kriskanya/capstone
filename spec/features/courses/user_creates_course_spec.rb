@@ -29,7 +29,7 @@ feature "User Creates a Course" do
     click_on "Post Course"
     page.should have_content("Programming 101 with Udacity has been posted")
     @course = Course.last
-    current_path.should == course_path(@course)
+    current_path.should == course_comments_path(@course)
     within("#course_details") do
       page.should have_content("Programming 101 with Udacity")
     end

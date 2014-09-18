@@ -9,11 +9,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(course_params)
+    # @course = Course.new(course_params)
     # @comment = @course.comments.build(comment_params)  # creates comment and associates it with the course automatically
-    # @course = @course.build(course_params)
+    @course = current_user.courses.build(course_params)
     if @course.save
-      redirect_to course_path(@course), notice: "#{@course.name} has been posted"
+      redirect_to course_comments_path(@course), notice: "#{@course.name} has been posted"
     else
       flash.now[:alert] = "Course could not be posted"
       render :new
@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     if @course.update(course_params)
-      redirect_to course_path(@course), notice: "Course #{@course.name} has been updated."
+      redirect_to course_comments_path(@course), notice: "Course #{@course.name} has been updated."
     else
       flash.now[:alert] = "Your changes could not be saved."
       render :edit
