@@ -28,11 +28,15 @@
           <span class="label label-default">keyword</span>
           <span class="label label-default">tag</span>
           <span class="label label-default">post</span></p>
-        <ul class="list-inline pull-left">
+        <ul class="list-inline pull-left edit-spec">
           <li><a href="#">2 Days Ago</a></li>
-          <li><i class="glyphicon glyphicon-edit"></i>
-            <%= link_to "Edit", edit_course_comment_path(@course, comment) %>
-          </li></ul>
+          <% if comment.user == current_user %>
+            <li>
+              <i class="glyphicon glyphicon-edit"></i>
+              <%= link_to "Edit", edit_course_comment_path(@course, comment) %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
     <hr>

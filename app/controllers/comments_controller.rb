@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :course_lookup, only: [:index, :create, :edit, :update, :show] # looks up the course
+  before_action :ensure_user_owns_comment, only: [:edit]  # checks to make sure only the user can edit a comment
 
   def index
     @comments = @course.comments
@@ -44,6 +45,13 @@ class CommentsController < ApplicationController
 
   def course_lookup
     @course = Course.find(params[:course_id])
+  end
+
+  def ensure_user_owns_comment
+    @comment = Comment.find(params[:id])
+    unless @comment.user == current_user
+      redirect_to course_comments_path(@course), alert: "You are not authorized to access this page."
+    end
   end
 
   # def index
