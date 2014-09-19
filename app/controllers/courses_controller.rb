@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    @courses = @courses.sort { |value1, value2| value2.get_likes.size <=> value1.get_likes.size }
   end
 
   def new
@@ -38,6 +39,21 @@ class CoursesController < ApplicationController
       flash.now[:alert] = "Your changes could not be saved."
       render :edit
     end
+  end
+
+  # -----acts_as_votable methods-----
+  # source: http://stackoverflow.com/questions/15012276/acts-as-votable-thumbs-up-down-buttons
+
+  def upvote
+    @course = Course.find(params[:id])
+    @course.liked_by current_user
+    redirect_to courses_path
+  end
+
+  def downvote
+    @course = Course.find(params[:id])
+    @course.downvote_from current_user
+    redirect_to courses_path
   end
 
   protected
