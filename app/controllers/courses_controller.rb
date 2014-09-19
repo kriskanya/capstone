@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    # the following is a ruby sort method - http://www.ruby-doc.org/core-2.1.2/Array.html#method-i-sort
     @courses = @courses.sort { |value1, value2| value2.get_likes.size <=> value1.get_likes.size }
   end
 

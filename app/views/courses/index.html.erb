@@ -3,9 +3,10 @@
 <div id="courses">
   <% @courses.each do |course| %>
     <div class="votable">
-      <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_path(course), method: :put %>
-      <%= link_to '<i class="glyphicon glyphicon-arrow-down down-arrow"></i>'.html_safe, dislike_course_path(course), method: :put %>
-      <%= course.get_likes.size %>
+      <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_path(course), class: "up-arrow-link", method: :put %>
+      <div class="course_likes"><%= course.get_likes.size %>
+      </div>
+      <%= link_to '<i class="glyphicon glyphicon-arrow-down down-arrow"></i>'.html_safe, dislike_course_path(course), class: "down-arrow-link", method: :put %>
       <%= course.get_dislikes.size %>
     </div>
     <div class="content">
