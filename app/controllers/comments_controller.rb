@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :course_lookup, only: [:index, :create, :edit, :update, :show] # looks up the course
+  before_action :course_lookup # looks up the course
   before_action :ensure_user_owns_comment, only: [:edit]  # checks to make sure only the user can edit a comment
 
   def index
@@ -35,6 +35,21 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+  end
+
+  # -----acts_as_votable methods-----
+  # source: http://stackoverflow.com/questions/15012276/acts-as-votable-thumbs-up-down-buttons
+
+  def upvote
+    @comment = Comment.find(params[:id])
+    @comment.liked_by current_user
+    redirect_to course_comments_path(@course)
+  end
+
+  def downvote
+    @comment = Comment.find(params[:id])
+    @comment.downvote_from current_user
+    redirect_to course_comments_path(@course)
   end
 
   protected

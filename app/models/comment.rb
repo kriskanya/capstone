@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  acts_as_votable
 
   validates_presence_of :comment_text
 

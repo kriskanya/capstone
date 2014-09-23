@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :courses do
-    resources :comments
+    resources :comments do
+      member do
+        put "like", to: "comments#upvote"
+        put "dislike", to: "comments#downvote"
+      end
+    end
   end
 
   resources :courses do
@@ -13,4 +18,11 @@ Rails.application.routes.draw do
       put "dislike", to: "courses#downvote"
     end
   end
+
+  # resources :comments do
+  #   member do
+  #     put "like", to: "comments#upvote"
+  #     put "dislike", to: "comments#downvote"
+  #   end
+  # end
 end
