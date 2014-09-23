@@ -1,58 +1,96 @@
-<div id="course_details", class="well well-lg">
-  <h2>
-    <%= @course.name %>
-    <%= @course.url %>
-    <%= @course.description %>
-
-  </h2>
-</div>
-
-
-<%= simple_form_for @comment, html: { id: "comment_form" }, url: course_comments_path(@course) do |f| %>
-  <%= f.hidden_field :course, value: "@course" %>
-  <%= f.input :comment_text %>
-  <%= f.submit "Submit Comment" %>
-<% end %>
-
-<div id="comments">
-  <% if @comments %>
-    <% @comments.each do |comment| %>
-      <div class="votable">
-        <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_comment_path(@course, comment), class: "up-arrow-link", method: :put %>
-        <div class="comment_likes">
-          <%= comment.get_likes.size %>
-        </div>
-        <%= link_to '<i class="glyphicon glyphicon-arrow-down down-arrow"></i>'.html_safe, dislike_course_comment_path(@course, comment), class: "down-arrow-link", method: :put %>
+<div class="container">
+  <div id="course_details">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>
+          <span><%= @course.name %></span>
+        </h1>
+        <h2><em><%= @course.level %> | <%= @course.duration %></em></h2>
+        <p>
+          <%= @course.description %>
+        </p>
       </div>
-      <div class="content">
-          <div class="panel panel-default">
+      <div class="col-sm-4">
+        <h1 id="course-instructor"><%= @course.instructor %><small>Instructor</small></h1>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>URL<span><%= link_to @course.url %></span></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Date<span><%= @course.date %></span></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Cost<span><%= number_to_currency(@course.cost) %></span></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Institution<span><%= @course.institution %></span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <%= simple_form_for @comment, html: { id: "comment_form" }, url: course_comments_path(@course) do |f| %>
+    <%= f.input :comment_text, label: "Add a comment...", as: :text, input_html: { rows: 3 } %>
+    <%= f.submit "Submit Comment", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+  <div id="comments">
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <div class="votable">
+          <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_comment_path(@course, comment), class: "up-arrow-link", method: :put %>
+          <div class="comment_likes">
+            <%= comment.get_likes.size %>
+          </div>
+          <%= link_to '<i class="glyphicon glyphicon-arrow-down down-arrow"></i>'.html_safe, dislike_course_comment_path(@course, comment), class: "down-arrow-link", method: :put %>
+        </div>
+        <div class="content">
+            <div class="panel panel-default comment-panel">
               <div class="panel-heading">
                 <%= "#{comment.user.name}" %>
               </div>
               <div class="panel-body">
                 <%= "#{comment.comment_text}" %>
               </div>
-            <p class="pull-right">
-              <span class="label label-default">keyword</span>
-              <span class="label label-default">tag</span>
-              <span class="label label-default">post</span>
-            </p>
-            <ul class="list-inline pull-left edit-spec delete-spec">
-              <li><a href="#">2 Days Ago</a></li>
-              <% if comment.user == current_user %>
-                <li>
-                  <i class="glyphicon glyphicon-edit"></i>
-                  <%= link_to "Edit", edit_course_comment_path(@course, comment) %>
-                </li>
-                <li>
-                  <i class="glyphicon glyphicon-trash"></i>
-                  <%= link_to "Delete", course_comment_path(@course, comment), method: :delete %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-      </div>
-      <hr>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <p class="pull-right">
+                  <span class="label label-default">keyword</span>
+                  <span class="label label-default">tag</span>
+                  <span class="label label-default">post</span>
+                </p>
+                <ul class="list-inline pull-left edit-spec delete-spec">
+                  <li>
+                    <li>
+                      <%= time_ago_in_words(comment.created_at) %> ago
+                    </li>
+                  </li>
+                  <% if comment.user == current_user %>
+                    <li>
+                      <i class="glyphicon glyphicon-edit"></i>
+                      <%= link_to "Edit", edit_course_comment_path(@course, comment) %>
+                    </li>
+                    <li>
+                      <i class="glyphicon glyphicon-trash"></i>
+                      <%= link_to "Delete", course_comment_path(@course, comment), method: :delete %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+        </div>
+        <hr>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
