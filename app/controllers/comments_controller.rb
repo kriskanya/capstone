@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
   before_action :course_lookup # looks up the course
-  before_action :ensure_user_owns_comment, only: [:edit]  # checks to make sure only the user can edit a comment
+  before_action :ensure_user_owns_comment, only: [:edit, :destroy]  # checks to make sure only the user can edit a comment
 
   def index
     @comments = @course.comments
+    @comments = @comments.sort { |value1, value2| value2.get_likes.size <=> value1.get_likes.size }
+
     @comment = Comment.new
   end
 
@@ -14,7 +16,6 @@ class CommentsController < ApplicationController
       redirect_to course_comments_path(params[:course_id]), notice: "Comment has been posted."
     else
       flash.now[:alert] = "Comment could not be posted."
-      # render course_comments_path(@course)
       render "index"
     end
   end
@@ -35,6 +36,13 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy!
+    flash.notice = "Your comment has been successfully deleted."
+    redirect_to course_comments_path(@course)
   end
 
   # -----acts_as_votable methods-----

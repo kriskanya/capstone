@@ -23,6 +23,7 @@ feature "User deletes a course" do
     login_as @user2
     visit '/'
     within('.delete-spec') { expect(page).to_not have_content("Delete") }
+    page.should have_content("Test Course")
     current_path.should eq root_path
     expect(Course.count).to eq 1
   end
@@ -34,6 +35,7 @@ feature "User deletes a course" do
     page.driver.submit :delete, "/courses/#{@course.id}", {}
 
     page.should have_content("You are not authorized to access this page.")
+    page.should have_content("Test Course")
     current_path.should eq root_path
     expect(Course.count).to eq 1
   end

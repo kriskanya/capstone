@@ -37,12 +37,16 @@
               <span class="label label-default">tag</span>
               <span class="label label-default">post</span>
             </p>
-            <ul class="list-inline pull-left edit-spec">
+            <ul class="list-inline pull-left edit-spec delete-spec">
               <li><a href="#">2 Days Ago</a></li>
               <% if comment.user == current_user %>
                 <li>
                   <i class="glyphicon glyphicon-edit"></i>
                   <%= link_to "Edit", edit_course_comment_path(@course, comment) %>
+                </li>
+                <li>
+                  <i class="glyphicon glyphicon-trash"></i>
+                  <%= link_to "Delete", course_comment_path(@course, comment), method: :delete %>
                 </li>
               <% end %>
             </ul>
