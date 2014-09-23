@@ -15,7 +15,7 @@ feature "User deletes a course" do
     click_on "Delete"
     page.should have_content("Your course has been deleted.")
     page.should_not have_content("Test Course")
-    current_path.should eq courses_path
+    current_path.should eq root_path
     expect(Course.count).to eq 0
   end
 
@@ -23,16 +23,18 @@ feature "User deletes a course" do
     login_as @user2
     visit '/'
     within('.delete-spec') { expect(page).to_not have_content("Delete") }
+    current_path.should eq root_path
     expect(Course.count).to eq 1
   end
 
   scenario "Tries to delete course that another user created - by just putting in the url" do
     login_as @user2
-    
+
     # documentation for the following code: http://stackoverflow.com/questions/9228831/how-to-make-capybara-do-a-delete-request-in-a-cucumber-feature
     page.driver.submit :delete, "/courses/#{@course.id}", {}
 
     page.should have_content("You are not authorized to access this page.")
+    current_path.should eq root_path
     expect(Course.count).to eq 1
   end
 end

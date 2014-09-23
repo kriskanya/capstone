@@ -46,7 +46,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy!
     flash.notice = "Your course has been deleted."
-    redirect_to courses_path
+    redirect_to root_path
   end
 
   # -----acts_as_votable methods-----
@@ -55,13 +55,13 @@ class CoursesController < ApplicationController
   def upvote
     @course = Course.find(params[:id])
     @course.liked_by current_user
-    redirect_to courses_path
+    redirect_to root_path
   end
 
   def downvote
     @course = Course.find(params[:id])
     @course.downvote_from current_user
-    redirect_to courses_path
+    redirect_to root_path
   end
 
   protected
