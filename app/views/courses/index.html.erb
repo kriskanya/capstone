@@ -21,7 +21,7 @@
           <span class="label label-default">keyword</span>
           <span class="label label-default">tag</span>
           <span class="label label-default">post</span></p>
-        <ul class="list-inline pull-left edit-spec">
+        <ul class="list-inline pull-left edit-spec delete-spec">
           <li><a href="#">2 Days Ago</a></li>
           <li><i class="glyphicon glyphicon-comment"></i>
              <%= link_to "Comments", course_comments_path(course) %>
@@ -30,6 +30,10 @@
             <li>
               <i class="glyphicon glyphicon-edit"></i>
               <%= link_to "Edit", edit_course_path(course) %>
+            </li>
+            <li>
+              <i class="glyphicon glyphicon-trash"></i>
+              <%= link_to "Delete", course_path(course), method: :delete %>
             </li>
           <% end %>
           </ul>

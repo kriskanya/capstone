@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   # do a course lookup based on the id
-  before_action :ensure_user_owns_course, only: [:edit]
+  before_action :ensure_user_owns_course, only: [:edit, :destroy]
 
   def index
     @courses = Course.all
@@ -40,6 +40,13 @@ class CoursesController < ApplicationController
       flash.now[:alert] = "Your changes could not be saved."
       render :edit
     end
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy!
+    flash.notice = "Your course has been deleted."
+    redirect_to courses_path
   end
 
   # -----acts_as_votable methods-----
