@@ -12,7 +12,7 @@ feature "User posts a comment" do
   scenario "Happy Path" do
     visit '/'
     click_on "Comments"
-    fill_in "Comment", with: "This is a comment for testing."
+    fill_in "Add a comment...", with: "This is a comment for testing."
     click_button "Submit"
     page.should have_content "Comment has been posted."
     Course.last.comments.last.comment_text.should eq "This is a comment for testing."
@@ -22,9 +22,9 @@ feature "User posts a comment" do
   scenario "Commenting is unsuccessful" do
     visit '/'
     click_on "Comments"
-    fill_in "Comment", with: ""
+    fill_in "Add a comment...", with: ""
     click_button "Submit"
     page.should have_content "Comment could not be posted."
-    page.should have_error("can't be blank", on: "Comment")
+    page.should have_error("can't be blank", on: "Add a comment...")
   end
 end
