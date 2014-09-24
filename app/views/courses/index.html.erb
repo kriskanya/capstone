@@ -1,7 +1,6 @@
 <div class = "container">
-  <h1> Courses index </h1>
-
   <div id="courses">
+    <h1> Courses </h1>
     <% @courses.each do |course| %>
       <div class="votable">
         <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_path(course), class: "up-arrow-link", method: :put %>
@@ -15,8 +14,29 @@
             <div class="panel-heading">
               <%= link_to "#{course.name}", "http://#{course.url}" %>
             </div>
-            <div class="panel-body">
-              <%= "#{course.description}" %>
+            <div class="panel-body description" data-courseid="<%= course.id %>">
+
+              <!-- The following code creates the "Read More" button functionality -->
+
+              <div>
+                <% if course.description.length > 250 %>
+                  <%= truncate(course.description, length: 250) %>
+                  <%= link_to 'Read more', '', class: "read-more-#{course.id}" %>
+                  <script>
+                    var courseId = $('.description').data('courseid');
+                    $('.read-more-'+courseId).on('click', function(e) {
+                      e.preventDefault();
+                      $(this).parent().html('<%= escape_javascript course.description %>');
+                    })
+                  </script>
+                <% else %>
+                  <%= course.description %>
+                <% end %>
+              </div>
+
+              <!-- <%= "#{course.description}" %> -->
+              <!-- <span class = "expand-description">(Expand) -->
+              </span>
             </div>
           <% if course.tag_array %>
             <p class="pull-right tags">

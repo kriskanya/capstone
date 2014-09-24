@@ -50,6 +50,14 @@ class CoursesController < ApplicationController
     redirect_to root_path
   end
 
+  def description
+    @course = Course.find(params[:id])
+    hash = {description: @course.description}
+    respond_to do |format|
+      format.json { render json: hash }
+    end
+  end
+
   # -----acts_as_votable methods-----
   # source: http://stackoverflow.com/questions/15012276/acts-as-votable-thumbs-up-down-buttons
 
