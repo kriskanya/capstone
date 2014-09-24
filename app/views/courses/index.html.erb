@@ -1,46 +1,48 @@
-<h1> Courses index </h1>
+<div class = "container">
+  <h1> Courses index </h1>
 
-<div id="courses">
-  <% @courses.each do |course| %>
-    <div class="votable">
-      <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_path(course), class: "up-arrow-link", method: :put %>
-      <div class="course_likes">
-        <%= course.get_likes.size %>
+  <div id="courses">
+    <% @courses.each do |course| %>
+      <div class="votable">
+        <%= link_to '<i class="glyphicon glyphicon-arrow-up up-arrow"></i>'.html_safe, like_course_path(course), class: "up-arrow-link", method: :put %>
+        <div class="course_likes">
+          <%= course.get_likes.size %>
+        </div>
+        <%= link_to '<i class="glyphicon glyphicon-arrow-down down-arrow"></i>'.html_safe, dislike_course_path(course), class: "down-arrow-link", method: :put %>
       </div>
-      <%= link_to '<i class="glyphicon glyphicon-arrow-down down-arrow"></i>'.html_safe, dislike_course_path(course), class: "down-arrow-link", method: :put %>
-    </div>
-    <div class="content">
-      <div class="panel panel-default">
-          <div class="panel-heading">
-            <%= link_to "#{course.name}", "http://#{course.url}" %>
-          </div>
-          <div class="panel-body">
-            <%= "#{course.description}" %>
-          </div>
-        <p class="pull-right">
-          <span class="label label-default">keyword</span>
-          <span class="label label-default">tag</span>
-          <span class="label label-default">post</span></p>
-        <ul class="list-inline pull-left edit-spec delete-spec">
-          <li>
-            <%= time_ago_in_words(course.created_at) %> ago
-          </li>
-          <li><i class="glyphicon glyphicon-comment"></i>
-             <%= link_to "Comments", course_comments_path(course) %>
-          </li>
-          <% if course.user == current_user %>
+      <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= link_to "#{course.name}", "http://#{course.url}" %>
+            </div>
+            <div class="panel-body">
+              <%= "#{course.description}" %>
+            </div>
+          <p class="pull-right">
+            <span class="label label-default">keyword</span>
+            <span class="label label-default">tag</span>
+            <span class="label label-default">post</span></p>
+          <ul class="list-inline pull-left edit-spec delete-spec">
             <li>
-              <i class="glyphicon glyphicon-edit"></i>
-              <%= link_to "Edit", edit_course_path(course) %>
+              <%= time_ago_in_words(course.created_at) %> ago
             </li>
-            <li>
-              <i class="glyphicon glyphicon-trash"></i>
-              <%= link_to "Delete", course_path(course), method: :delete %>
+            <li><i class="glyphicon glyphicon-comment"></i>
+               <%= link_to "Comments", course_comments_path(course) %>
             </li>
-          <% end %>
-          </ul>
+            <% if course.user == current_user %>
+              <li>
+                <i class="glyphicon glyphicon-edit"></i>
+                <%= link_to "Edit", edit_course_path(course) %>
+              </li>
+              <li>
+                <i class="glyphicon glyphicon-trash"></i>
+                <%= link_to "Delete", course_path(course), method: :delete %>
+              </li>
+            <% end %>
+            </ul>
+        </div>
       </div>
-    </div>
-    <hr>
-  <% end %>
+      <hr>
+    <% end %>
+  </div>
 </div>
