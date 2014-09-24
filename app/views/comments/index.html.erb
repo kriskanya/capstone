@@ -14,7 +14,7 @@
         <h1 id="course-instructor"><%= @course.instructor %><small>Instructor</small></h1>
         <div class="row">
           <div class="col-xs-12">
-            <h3>URL<span><%= link_to @course.url %></span></h3>
+            <h3>URL<span><%= link_to @course.url, "#{@course.url}" %></span></h3>
           </div>
         </div>
         <div class="row">
