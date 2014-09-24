@@ -7,4 +7,10 @@ class Course < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
+  def tag_array
+    if self.tags
+      self.tags.split(",").map { |tag| tag.lstrip.rstrip }
+    end
+  end
+
 end

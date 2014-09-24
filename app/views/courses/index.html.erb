@@ -18,10 +18,15 @@
             <div class="panel-body">
               <%= "#{course.description}" %>
             </div>
-          <p class="pull-right">
-            <span class="label label-default">keyword</span>
-            <span class="label label-default">tag</span>
-            <span class="label label-default">post</span></p>
+          <% if course.tag_array %>
+            <p class="pull-right tags">
+              <% course.tag_array.each do |tag| %>
+                <span class="label label-default">
+                  <%= tag %>
+                </span>
+              <% end %>
+            </p>
+          <% end %>
           <ul class="list-inline pull-left edit-spec delete-spec">
             <li>
               <%= time_ago_in_words(course.created_at) %> ago

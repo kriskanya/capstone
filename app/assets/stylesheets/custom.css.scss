@@ -17,6 +17,14 @@ div#courses {
   div.content {
     width: 93%;
     display: inline-block;
+
+    p.tags {
+      margin: 10px 0 0 0;
+    }
+
+    ul.list-inline {
+      margin: 10px 0 0 0;
+    }
   }
 }
 

@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    # truncate_course_description
     # the following is a ruby sort method - http://www.ruby-doc.org/core-2.1.2/Array.html#method-i-sort
     @courses = @courses.sort { |value1, value2| value2.get_likes.size <=> value1.get_likes.size }
   end
@@ -67,7 +68,7 @@ class CoursesController < ApplicationController
   protected
 
   def course_params
-    params.require(:course).permit(:name, :url, :description, :level, :date, :cost, :instructor, :institution, :duration)
+    params.require(:course).permit(:name, :url, :description, :level, :date, :cost, :instructor, :institution, :duration, :tags)
   end
 
   def ensure_user_owns_course
@@ -76,5 +77,14 @@ class CoursesController < ApplicationController
       redirect_to root_path, alert: "You are not authorized to access this page."
     end
   end
+
+  # def truncate_course_description
+  #   @courses = Course.all
+  #   @courses.each do |course|
+  #     if course.description.length > 300
+  #       course.description = course.description[0...300] + "..."
+  #     end
+  #   end
+  # end
 
 end
