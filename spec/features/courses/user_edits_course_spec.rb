@@ -29,7 +29,7 @@ feature "User Edits a Course" do
     fill_in "Url", with: "http://www.google.com"
     expect(page).to have_field('Name', with: "NewName")
     expect(page).to have_field('Url', with: "http://www.google.com")
-    click_on "Save Edit"
+    click_on "Post Course"
     page.should have_content("Course NewName has been updated.")
   end
 
@@ -40,7 +40,7 @@ feature "User Edits a Course" do
     fill_in "Url", with: ""
     expect(page).to have_field('Name', with: '')
     expect(page).to have_field('Url', with: '')
-    click_on "Save Edit"
+    click_on "Post Course"
     page.should have_content("Your changes could not be saved.")
     page.should have_error("can't be blank", on: "Name")
     page.should have_error("can't be blank", on: "Url")

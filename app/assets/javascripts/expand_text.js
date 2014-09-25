@@ -1,10 +1,10 @@
 (function(){
   'use strict'
 
-  $(document).ready(init);
+  $(document).on("ready page:load", init);
 
   function init(){
-    $('.expand-description').readmore({
+    $('.expand-description, .expand-comment').readmore({
       speed: 75,
       maxHeight: 60
     });
