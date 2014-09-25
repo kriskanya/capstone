@@ -12,11 +12,12 @@
       <div class="content">
         <div class="panel panel-default">
             <div class="panel-heading">
-              <%= link_to "#{course.name}", "http://#{course.url}" %>
+              <%= link_to "#{course.name}", "#{course.url}" %>
             </div>
             <div class="panel-body description" data-courseid="<%= course.id %>">
 
               <!-- The following code creates the "Read More" button functionality -->
+              <!-- Source: http://stackoverflow.com/questions/15262503/rails-truncate-with-a-read-more-toggle -->
 
               <div>
                 <% if course.description.length > 250 %>
@@ -34,8 +35,8 @@
                 <% end %>
               </div>
 
-              <!-- <%= "#{course.description}" %> -->
-              <!-- <span class = "expand-description">(Expand) -->
+              <!-- code finished -->
+
               </span>
             </div>
           <% if course.tag_array %>

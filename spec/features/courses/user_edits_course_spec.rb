@@ -5,7 +5,7 @@
 feature "User Edits a Course" do
   background do
     @user = Fabricate(:user)
-    @course = Fabricate(:course, user_id: @user.id, name: "TestName", url: "www.yahoo.com", description: "TestDescription", level: "Beginner", date: "2014-09-12", cost: 0, instructor: "Smith", institution: "UCLA", duration: "10 weeks")
+    @course = Fabricate(:course, user_id: @user.id, name: "TestName", url: "http://www.yahoo.com", description: "TestDescription", level: "Beginner", date: "2014-09-12", cost: 0, instructor: "Smith", institution: "UCLA", duration: "10 weeks")
     login_as @user  # this can be found in authentication.rb
   end
 
@@ -14,7 +14,7 @@ feature "User Edits a Course" do
     page.should have_css('.glyphicon-edit')
     click_on "Edit"
     expect(page).to have_field('Name', with: 'TestName')
-    expect(page).to have_field('Url', with: 'www.yahoo.com')
+    expect(page).to have_field('Url', with: 'http://www.yahoo.com')
     expect(page).to have_field('Description', with: 'TestDescription')
     expect(page).to have_field('Level', with: 'Beginner')
     expect(page).to have_field('course[date(1i)]', with: '2014')
@@ -26,9 +26,9 @@ feature "User Edits a Course" do
     expect(page).to have_field('Duration', with: '10 weeks')
 
     fill_in "Name", with: "NewName"
-    fill_in "Url", with: "www.google.com"
+    fill_in "Url", with: "http://www.google.com"
     expect(page).to have_field('Name', with: "NewName")
-    expect(page).to have_field('Url', with: "www.google.com")
+    expect(page).to have_field('Url', with: "http://www.google.com")
     click_on "Save Edit"
     page.should have_content("Course NewName has been updated.")
   end

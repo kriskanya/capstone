@@ -1,6 +1,6 @@
 Fabricator(:course) do
   name { sequence(:name) { |i| "course#{i}" } }
-  url { sequence(:url) { |i| "url#{i}.com" } }
+  url { sequence(:url) { |i| "http://www.url#{i}.com" } }
   description { sequence(:description) { |i| "description#{i}" } }
   level { "beginner" }
   date { "2014-09-12" }
