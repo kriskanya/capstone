@@ -28,7 +28,7 @@
                     $('.read-more-'+courseId).on('click', function(e) {
                       e.preventDefault();
                       $(this).parent().html('<%= escape_javascript course.description %>');
-                    })
+                    });
                   </script>
                 <% else %>
                   <%= course.description %>
