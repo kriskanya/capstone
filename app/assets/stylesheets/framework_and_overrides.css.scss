@@ -65,6 +65,10 @@ section {
   @extend .btn;
   @extend .btn-primary;
 }
+.authform .checkbox {
+  display: inline-block;
+  width: 150px;
+}
 .authform fieldset {
   @extend .well;
 }

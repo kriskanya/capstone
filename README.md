@@ -23,8 +23,8 @@ Technologies Used:
 - RSpec/Capybara/Selenium
 - Twitter Bootstrap
 - PostgreSQL
+- Rails Composer
 - acts_as_votable
-
 
 Ruby on Rails
 -------------

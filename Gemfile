@@ -15,6 +15,9 @@ gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'validates_url_format_of'
 gem 'pg'
+# gem 'capybara-webkit'
+gem 'poltergeist'
+# gem "codeclimate-test-reporter", group: :test, require: nil
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
