@@ -1,0 +1,15 @@
+<div class="container course-form-div">
+  <%= simple_form_for @course, html: {id: "course_form"} do |f| %>
+    <%= f.input :name, placeholder: "Intro to Computer Science" %>
+    <%= f.input :url, placeholder: "https://www.udacity.com/course/cs101" %>
+    <%= f.input :description, placeholder: "In this introduction to computer programming course, you’ll learn and practice key computer science concepts by building your own versions of popular web applications. You’ll learn Python, a powerful, easy-to-learn, and widely used programming language, and you’ll explore computer science basics, as you build your own search engine and social network." %>
+    <%= f.input :level, collection: ["Beginner", "Intermediate", "Advanced"], :selected => "beginner" %>
+    <%= f.input :date %>
+    <%= f.input :cost, label: "Cost ($)", placeholder: "0" %>
+    <%= f.input :instructor, placeholder: "Dave Evans" %>
+    <%= f.input :institution, placeholder: "Udacity" %>
+    <%= f.input :duration, placeholder: "3 months" %>
+    <%= f.input :tags, placeholder: "computer science, python, programming, search engines" %>
+    <%= f.submit "Post Course", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

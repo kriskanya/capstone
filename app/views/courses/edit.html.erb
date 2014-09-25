@@ -1,12 +1,1 @@
-<%= simple_form_for @course, html: {id: "course_form"} do |f| %>
-  <%= f.input :name %>
-  <%= f.input :url %>
-  <%= f.input :description %>
-  <%= f.input :level, collection: ["Beginner", "Intermediate", "Advanced"], :selected => "beginner" %>
-  <%= f.input :date %>
-  <%= f.input :cost %>
-  <%= f.input :instructor %>
-  <%= f.input :institution %>
-  <%= f.input :duration %>
-  <%= f.submit "Save Edit" %>
-<% end %>
+<%= render "form" %>
