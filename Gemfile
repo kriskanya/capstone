@@ -15,7 +15,7 @@ gem 'simple_form'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'validates_url_format_of'
 gem 'pg'
-# gem 'capybara-webkit'
+gem 'fabrication'
 gem 'poltergeist'
 gem "codeclimate-test-reporter", group: :test, require: nil
 group :development do
@@ -37,7 +37,6 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'database_cleaner'
-  gem 'fabrication'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'pry-rails'
