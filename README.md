@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/kriskanya/capstone.svg?branch=master)](https://travis-ci.org/kriskanya/capstone)
 [![Code Climate](https://codeclimate.com/github/kriskanya/capstone/badges/gpa.svg)](https://codeclimate.com/github/kriskanya/capstone)
+[![Test Coverage](https://codeclimate.com/github/kriskanya/capstone/badges/coverage.svg)](https://codeclimate.com/github/kriskanya/capstone)
 
 Final Project3
 ================

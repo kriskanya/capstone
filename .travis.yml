@@ -6,4 +6,4 @@ addons:
 before_script:
   - cp config/database.yml.example config/database.yml
   - psql -c 'create database moochub_test;' -U postgres
-script: 'xvfb-run bundle exec rake'
+script: 'CODECLIMATE_REPO_TOKEN=7765e487c8bb2937b7938b84e7c19061d8110648674041c0a2068663ceda5f95 xvfb-run bundle exec rake'
