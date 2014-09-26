@@ -1,31 +1,40 @@
+moochub
+================
 [![Build Status](https://travis-ci.org/kriskanya/capstone.svg?branch=master)](https://travis-ci.org/kriskanya/capstone)
 [![Code Climate](https://codeclimate.com/github/kriskanya/capstone/badges/gpa.svg)](https://codeclimate.com/github/kriskanya/capstone)
 [![Test Coverage](https://codeclimate.com/github/kriskanya/capstone/badges/coverage.svg)](https://codeclimate.com/github/kriskanya/capstone)
 
-Final Project3
-================
+moochub is a web application I built using Ruby on Rails in order for users to be able to share their favorite massively open online courses (MOOCs) with others.  
+In addition to sharing links to courses they like, they are able to upvote/downvote courses reddit-style as well as comment on them.
 
-I created this application for users to be able to share their favorite massively open online courses (MOOCs) with others.  In addition to
-sharing links to courses they like, they are able to upvote/downvote courses as well as comment on them.
+This is my final project for a 6-month long course on web application development at Nashville Software School.  Please don't hesitate to contact
+me with any questions.
 
 Getting Started
 ---------------
 
+The live app can be found at: http://moochub.herokuapp.com/
+
 1. Clone this repo.
 2. Run bundle.
+3. Copy database.yml.example into database.yml
+4. 'rake db:create:all'
+5. 'rake db:migrate'
 
 Technologies Used:
 -----------
 
-- HTML & CSS (SASS)
+- HTML, CSS, & SASS
 - Ruby on Rails
 - ERB
 - jQuery
-- RSpec/Capybara/Selenium
+- RSpec with Capybara Test Suite
+- Poltergeist JS Driver
 - Twitter Bootstrap
-- PostgreSQL
+- PostgreSQL Database
 - Rails Composer
 - acts_as_votable
+- will_paginate
 
 Ruby on Rails
 -------------
