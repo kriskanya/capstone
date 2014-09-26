@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
     # truncate_course_description
     # the following is a ruby sort method - http://www.ruby-doc.org/core-2.1.2/Array.html#method-i-sort
     @courses = @courses.sort { |value1, value2| value2.get_likes.size <=> value1.get_likes.size }
-    @courses = @courses.paginate(page: params[:page], per_page: 2)
+    @courses = @courses.paginate(page: params[:page], per_page: 5)
   end
 
   def new
